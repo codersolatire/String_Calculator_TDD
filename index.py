@@ -26,7 +26,7 @@ class index(unittest.TestCase):
     def test_index_n_params(self):
         self.assertEqual(Add("40, 10, 20, 30, 50"), "150")
 
-    def test_index_n_params(self):
+    def test_index_n_params_diff_delimeters(self):
         self.assertEqual(Add("40\n10,20,30,50"), "150")
 
 if __name__ == '__main__':
