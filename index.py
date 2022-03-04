@@ -2,7 +2,19 @@ import unittest
 import re
 
 def Add(numbers):
-    num_split = re.split(',|\n',numbers)
+    delimeters = numbers[numbers.find("//")+len("//"):numbers.find("\n")]
+
+    if numbers.find("//") == 0:
+        if delimeters == "":
+            delimeters = ";"
+        nums = ""
+        for i in range(1, len(numbers.split("\n"))):
+            nums += numbers.split("\n")[i]
+
+        num_split = re.split(delimeters, nums)
+    else:
+        num_split = re.split(',|\n', numbers)
+
     if numbers == "":
         return "0"
     elif len(num_split) == 1:
@@ -28,6 +40,9 @@ class index(unittest.TestCase):
 
     def test_index_n_params_diff_delimeters(self):
         self.assertEqual(Add("40\n10,20,30,50"), "150")
+
+    def test_index_delimeters_and_nums(self):
+        self.assertEqual(Add("//;\n1;2"), "3")
 
 if __name__ == '__main__':
     unittest.main()
