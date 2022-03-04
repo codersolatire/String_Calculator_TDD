@@ -1,7 +1,8 @@
 import unittest
+import re
 
 def Add(numbers):
-    num_split = numbers.split(",")
+    num_split = re.split(',|\n',numbers)
     if numbers == "":
         return "0"
     elif len(num_split) == 1:
@@ -24,6 +25,9 @@ class index(unittest.TestCase):
 
     def test_index_n_params(self):
         self.assertEqual(Add("40, 10, 20, 30, 50"), "150")
+
+    def test_index_n_params(self):
+        self.assertEqual(Add("40\n10,20,30,50"), "150")
 
 if __name__ == '__main__':
     unittest.main()
